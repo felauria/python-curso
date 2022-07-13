@@ -19,6 +19,7 @@
 
 import random
 
+print("-=" * 64)
 print("Bem vindo ao ROGER PULOS E GRITOS")
 nome = input("Digite seu nome: -> ")
 
@@ -48,12 +49,17 @@ print("\n\n O reino do norte após se apoderar do livro sagrado dos Gulls, domin
 print("Todos do reino corriam sérios perigos até que um ato heróico acendeu a chama de esperanca")
 print(f"O jovem {nome}, que até então apenas ajudava na faxina do palácio, se dipos a entrar escondido na terra inimiga e matar o mal pela raiz.")
 
-print(f"Se aproximando das fazendas de Eli, o {classe} se depara com uma velha senhora que lhe oferece um chá")
+print(f"\n\nSe aproximando das fazendas de Eli, o {classe} se depara com uma velha senhora que lhe oferece um chá")
 
 while True:
     res = input("O jovem deve aceitar? sim/nao ->")
 
     if res == "nao":
-        print(f"{nome} recusa o convite educadamente e se despede da senhora, porém, ao se virar para ir embora,\na mulher o puxa pelos bracos e comeca a se transformar na frente de seus olhos e se revela um terrível monstro")
+        print(f"\n{nome} recusa o convite educadamente e se despede da senhora, porém, ao se virar para ir embora,\na mulher o puxa pelos bracos e comeca a se transformar na frente de seus olhos e se revela um terrível monstro")
+        break
     elif res == "sim":
-        print(f"{nome} aceita o convite e se senta com a senhora na varanda da casa. Após longos 30 minutos de conversa, o jovem diz precisar partir e agradece o café\n A senhora sorri e comeca a gargalhar bem alto, o jovem comeca ")
+        print(f"\n{nome} aceita o convite e se senta com a senhora na varanda da casa. Após longos 30 minutos de conversa, o jovem diz precisar partir e agradece o café\nA senhora sorri e comeca a gargalhar bem alto, o jovem comeca a se sentir tonto e presencia a senhora se transformando em um terrível mostro na frente de seus olhos")
+        break
+    else:
+        print("Responda corretamente.")
+        continue
