@@ -13,11 +13,17 @@
 
 # -Monstros
 # Os monstros são gerados com 20 de vida
-# Para atacar o monstro em seu turno escolhe aleatoriamente entre atacar dando 3 de dano ou se defender
+# Para atacar, o monstro em seu turno escolhe aleatoriamente entre atacar dando 3 de dano ou se defender
 # Quando algum monstro é morto, o usuário tem a opção de sair do jogo ou continuar
 # Caso o usuário após matar um monstro queira continuar jogando, toda a sua vida é recuperada e o próximo monstro gerado terá 10 de vida e 3 de ataque a mais que o último e o jogador ganhará mais 3 de probabilidade de ataque e mais 5 de vida
 
 import random
+
+vidaMonstro = 20
+danoMonstro = 0
+probabilidadeExtra = 0
+vidaJogador = 30
+defendendo = False
 
 print("-=" * 64)
 print("Bem vindo ao ROGER PULOS E GRITOS")
@@ -41,13 +47,15 @@ while True:
         print("Classe não identificada, por favor preencha novamente.")
         continue
 
+print("-=" * 64)
 
-print("Em um reino não tão distante chamado Rogersvania, um jovem oriundo de uma família humilde, vivia a servicos do reino para matar a fome de seus parentes.")
+print("\n\nEm um reino não tão distante chamado Rogersvania, um jovem oriundo de uma família humilde, vivia a servicos do reino para matar a fome de seus parentes.")
 print("Até que um dia...\n")
 print("houve o chamado")
 print("\n\n O reino do norte após se apoderar do livro sagrado dos Gulls, dominou a magia negra e a utilizou para invadir e devastar os reinos vizinhos")
 print("Todos do reino corriam sérios perigos até que um ato heróico acendeu a chama de esperanca")
-print(f"O jovem {nome}, que até então apenas ajudava na faxina do palácio, se dipos a entrar escondido na terra inimiga e matar o mal pela raiz.")
+print(f"O jovem {nome}, que até então apenas ajudava na faxina do palácio, se dipos a entrar escondido na terra inimiga e matar o mal pela raiz.\n\n")
+print("-=" * 64)
 
 print(f"\n\nSe aproximando das fazendas de Eli, o {classe} se depara com uma velha senhora que lhe oferece um chá")
 
@@ -63,3 +71,60 @@ while True:
     else:
         print("Responda corretamente.")
         continue
+
+print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+print("\n\nMECÂNICA DE COMBATE - Turno Jogador")
+print("\nVocê possui 4 opções:")
+print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
+
+while True:
+    res = input("Oque deseja fazer? -> ")
+
+    if res == "1":
+        if classe == "mago":
+            ataque = random.randint(0,8 + probabilidadeExtra)
+        else:
+            ataque = random.randint(3,10 + probabilidadeExtra)
+
+        poder -= 2
+        vidaMonstro -= ataque
+        defendendo = False
+
+        print(f"Seu ataque causou {ataque} de dano ao monstro.")
+        break
+
+    elif res == "2":
+        defendendo = True
+
+        if classe == "mago":
+            poder -= 1
+        break
+
+    elif res == "3":
+        defendendo = False
+
+        if classe == "mago":
+            vidaJogador += 2
+        else:
+            vidaJogador += 1
+        break
+
+    elif res == "4":
+        defendendo = False
+
+        recarga = random.randint(0,5)
+        poder += recarga
+        break
+
+    else:
+        print("Responda corretamente")
+        continue
+
+print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+acaoMonstro = random.randint(0,1)
+
+if acaoMonstro == 0:
+    vidaJogador -= danoMonstro
+    print(f"O monstro causou {danoMonstro} de dano")
