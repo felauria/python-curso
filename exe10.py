@@ -179,7 +179,7 @@ print("O rei então prepara seus melhores monstros e os ordena a lutarem contra 
 
 monstrosMortos = 0
 
-while True
+while True:
 
     vidaJogadorInicial += 5
     vidaJogador = vidaJogadorInicial
