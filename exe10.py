@@ -295,9 +295,9 @@ while True:
 
     print(f"\n\nVIDA DO REI: {vidaRei} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
 
-            print("\n\nMECÂNICA DE COMBATE")
-            print("\nVocê possui 4 opções:")
-            print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
+    print("\n\nMECÂNICA DE COMBATE")
+    print("\nVocê possui 4 opções:")
+    print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
 
     while True:
         ataque = 0
@@ -321,7 +321,7 @@ while True:
             print(f"Seu ataque causou {ataque} de dano ao rei.")
             break
 
-            elif res == "2":
+        elif res == "2":
                     
 
             if classe == "mago":
