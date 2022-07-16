@@ -18,12 +18,17 @@
 # Caso o usuário após matar um monstro queira continuar jogando, toda a sua vida é recuperada e o próximo monstro gerado terá 10 de vida e 3 de ataque a mais que o último e o jogador ganhará mais 3 de probabilidade de ataque e mais 5 de vida
 
 import random
+import sys
 
+vidaMonstroInicial = 20
 vidaMonstro = 20
-danoMonstro = 0
+danoMonstro = 3
 probabilidadeExtra = 0
+vidaJogadorInicial = 30
 vidaJogador = 30
-defendendo = False
+
+vidaRei = 100
+defendendo = 0
 
 print("-=" * 64)
 print("Bem vindo ao ROGER PULOS E GRITOS")
@@ -72,59 +77,307 @@ while True:
         print("Responda corretamente.")
         continue
 
-print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
-
-print("\n\nMECÂNICA DE COMBATE - Turno Jogador")
-print("\nVocê possui 4 opções:")
-print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
 
 while True:
-    res = input("Oque deseja fazer? -> ")
+    print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
 
-    if res == "1":
-        if classe == "mago":
-            ataque = random.randint(0,8 + probabilidadeExtra)
+    print("\n\nMECÂNICA DE COMBATE")
+    print("\nVocê possui 4 opções:")
+    print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
+
+    while True:
+        ataque = 0
+        defendendo = 0
+
+        res = input("Oque deseja fazer? -> ")
+
+        if res == "1":
+            if classe == "mago":
+                ataque = random.randint(0,8 + probabilidadeExtra)
+            else:
+                ataque = random.randint(3,10 + probabilidadeExtra)
+
+            if poder >= 2:
+                vidaMonstro -= ataque
+                poder -= 2
+            else:
+                print("Você não pode atacar. Seu poder é insuficiente")
+            defendendo = 0
+
+            print(f"Seu ataque causou {ataque} de dano ao monstro.")
+            break
+
+        elif res == "2":
+            
+
+            if classe == "mago":
+                if poder >= 1:
+                    defendendo = 1
+                    poder -= 1
+                else: 
+                    print("Você não pode defender. Seu poder é insuficiente")
+            break
+
+            defendendo = 1
+
+        elif res == "3":
+            defendendo = 0
+
+            if classe == "mago":
+                vidaJogador += 2
+            else:
+                vidaJogador += 1
+            break
+
+        elif res == "4":
+            defendendo = 0
+
+            recarga = random.randint(0,5)
+            poder += recarga
+            break
+
+        elif res == "adm-killMonster":
+            vidaMonstro = 0
+            break
+
         else:
-            ataque = random.randint(3,10 + probabilidadeExtra)
+            print("Responda corretamente")
+            continue
 
-        poder -= 2
-        vidaMonstro -= ataque
-        defendendo = False
+    # print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
 
-        print(f"Seu ataque causou {ataque} de dano ao monstro.")
+    if vidaMonstro <= 0:
+        print("Parabéns! Você conseguiu derrotar o mosntro.")
         break
 
-    elif res == "2":
-        defendendo = True
+    acaoMonstro = random.randint(0,1)
 
-        if classe == "mago":
-            poder -= 1
-        break
-
-    elif res == "3":
-        defendendo = False
-
-        if classe == "mago":
-            vidaJogador += 2
-        else:
-            vidaJogador += 1
-        break
-
-    elif res == "4":
-        defendendo = False
-
-        recarga = random.randint(0,5)
-        poder += recarga
-        break
-
+    if acaoMonstro == 0:
+        vidaJogador -= (danoMonstro - defendendo)
+        print(f"O monstro causou {danoMonstro} de dano")
     else:
-        print("Responda corretamente")
+        vidaMonstro += ataque
+        print(f"O monstro se defendeu")
+    
+    if vidaJogador == 0:
+        print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
+        sys.exit()
+
+
+while True:
+    res = input("Deseja continuar sua jornada? sim/nao ->")
+    if res == "sim":
+        break
+    elif res == "nao":
+        sys.exit()
+    else:
+        print("Resposta inválida!")
         continue
 
-print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+print(f"Após atravessar as fazendas de ELi, o {classe} entra dentro do reino e desafia o próprio rei em busca da paz")
+print("O rei então prepara seus melhores monstros e os ordena a lutarem contra o pequeno e corajoso jovem.")
 
-acaoMonstro = random.randint(0,1)
+monstrosMortos = 0
 
-if acaoMonstro == 0:
-    vidaJogador -= danoMonstro
-    print(f"O monstro causou {danoMonstro} de dano")
+while True
+
+    vidaJogadorInicial += 5
+    vidaJogador = vidaJogadorInicial
+
+    vidaMonstroInicial += 10
+    vidaMonstro = vidaMonstroInicial
+
+    probabilidadeExtra += 5
+
+    while True:
+        print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+        print("\n\nMECÂNICA DE COMBATE")
+        print("\nVocê possui 4 opções:")
+        print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
+
+        while True:
+            ataque = 0
+            defendendo = 0
+
+            res = input("Oque deseja fazer? -> ")
+
+            if res == "1":
+                if classe == "mago":
+                    ataque = random.randint(0,8 + probabilidadeExtra)
+                else:
+                    ataque = random.randint(3,10 + probabilidadeExtra)
+
+                if poder >= 2:
+                    vidaMonstro -= ataque
+                    poder -= 2
+                else:
+                    print("Você não pode atacar. Seu poder é insuficiente")
+                defendendo = 0
+
+                print(f"Seu ataque causou {ataque} de dano ao monstro.")
+                break
+
+            elif res == "2":
+                
+
+                if classe == "mago":
+                    if poder >= 1:
+                        defendendo = 1
+                        poder -= 1
+                    else: 
+                        print("Você não pode defender. Seu poder é insuficiente")
+                break
+
+                defendendo = 1
+
+            elif res == "3":
+                defendendo = 0
+
+                if classe == "mago":
+                    vidaJogador += 2
+                else:
+                    vidaJogador += 1
+                break
+
+            elif res == "4":
+                defendendo = 0
+
+                recarga = random.randint(0,5)
+                poder += recarga
+                break
+
+            elif res == "adm-killMonster":
+                vidaMonstro = 0
+                break
+
+            else:
+                print("Responda corretamente")
+                continue
+
+        # print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+        if vidaMonstro <= 0:
+            print("Parabéns! Você conseguiu derrotar o mosntro.")
+            monstrosMortos += 1
+            break
+
+        acaoMonstro = random.randint(0,1)
+
+        if acaoMonstro == 0:
+            vidaJogador -= (danoMonstro - defendendo)
+            print(f"O monstro causou {danoMonstro} de dano")
+        else:
+            vidaMonstro += ataque
+            print(f"O monstro se defendeu")
+        
+        if vidaJogador == 0:
+            print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
+            sys.exit()
+
+
+    while True:
+        res = input("Deseja continuar sua jornada? sim/nao ->")
+        if res == "sim":
+            break
+        elif res == "nao":
+            sys.exit()
+        else:
+            print("Resposta inválida!")
+            continue
+
+    if monstrosMortos == 4:
+        print("-=" * 42)
+        print(f"\n\nAo matar todos os monstros do rei, {nome} adentra ao quarto real e o encara frente a frente")
+        break
+
+while True:
+
+    print(f"\n\nVIDA DO REI: {vidaRei} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+            print("\n\nMECÂNICA DE COMBATE")
+            print("\nVocê possui 4 opções:")
+            print("1 - Atacar | 2 - Defender | 3 - Curar | 4 - Descansar")
+
+    while True:
+        ataque = 0
+        defendendo = 0
+
+        res = input("Oque deseja fazer? -> ")
+
+        if res == "1":
+            if classe == "mago":
+                ataque = random.randint(0,8 + probabilidadeExtra)
+            else:
+                ataque = random.randint(3,10 + probabilidadeExtra)
+
+            if poder >= 2:
+                vidaRei -= ataque
+                poder -= 2
+            else:
+                print("Você não pode atacar. Seu poder é insuficiente")
+            defendendo = 0
+
+            print(f"Seu ataque causou {ataque} de dano ao rei.")
+            break
+
+            elif res == "2":
+                    
+
+            if classe == "mago":
+                if poder >= 1:
+                    defendendo = 1
+                    poder -= 1
+                else: 
+                    print("Você não pode defender. Seu poder é insuficiente")
+            break
+
+            defendendo = 1
+
+        elif res == "3":
+            defendendo = 0
+
+            if classe == "mago":
+                vidaJogador += 2
+            else:
+                vidaJogador += 1
+            break
+
+        elif res == "4":
+            defendendo = 0
+
+            recarga = random.randint(0,5)
+            poder += recarga
+            break
+
+        elif res == "adm-killMonster":
+            vidaRei = 0
+            break
+
+        else:
+            print("Responda corretamente")
+            continue
+
+    # print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
+
+    if vidaRei <= 0:
+        print("Parabéns! Você conseguiu derrotar o Rei.")
+        break
+
+    acaoMonstro = random.randint(0,1)
+
+    if acaoMonstro == 0:
+        vidaJogador -= (danoMonstro - defendendo)
+        print(f"O rei causou {danoMonstro} de dano")
+    else:
+        vidaRei += ataque
+        print(f"O rei se defendeu")
+
+    if vidaJogador == 0:
+        print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
+        sys.exit()
+
+print(f"Toda honra e glória ao pequeno e corajoso {nome}, o bravo {classe} que lutou em nome de todo seu povo e trouxe de volta a paz ao mundo.")
+
+
+    
