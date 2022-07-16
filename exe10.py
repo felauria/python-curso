@@ -188,6 +188,7 @@ while True:
     vidaMonstro = vidaMonstroInicial
 
     probabilidadeExtra += 5
+    danoMonstro += 3
 
     while True:
         print(f"\n\nVIDA DO MONSTRO: {vidaMonstro} | VIDA DO JOGADOR: {vidaJogador} PODER: {poder}")
@@ -290,6 +291,10 @@ while True:
         print("-=" * 42)
         print(f"\n\nAo matar todos os monstros do rei, {nome} adentra ao quarto real e o encara frente a frente")
         break
+        
+danoMonstro = 20
+vidaJogador = 70
+poder = 20
 
 while True:
 
