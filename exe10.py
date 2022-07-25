@@ -159,7 +159,7 @@ while True:
         vidaMonstro += ataque
         print(f"O monstro se defendeu")
     
-    if vidaJogador == 0:
+    if vidaJogador <= 0:
         print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
         sys.exit()
 
@@ -272,7 +272,7 @@ while True:
             vidaMonstro += ataque
             print(f"O monstro se defendeu")
         
-        if vidaJogador == 0:
+        if vidaJogador <= 0:
             print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
             sys.exit()
 
@@ -378,7 +378,7 @@ while True:
         vidaRei += ataque
         print(f"O rei se defendeu")
 
-    if vidaJogador == 0:
+    if vidaJogador <= 0:
         print("WASTED\n\n O jogador não resistiu ao ataque e morreu.")
         sys.exit()
 
